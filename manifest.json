@@ -1,14 +1,21 @@
 {
-    "name": "Hello Extensions",
-    "description" : "Base Level Extension",
+    "name": "Job Tracker",
+    "description" : "Mark the job you have not applied",
     "permissions": ["declarativeContent", 
                     "storage",
-                    "activeTab"],
+                    "activeTab",
+                    "tabs"],
     "version": "1.0",
     "background": {
-        "scripts": ["src/background.js"],
+        "scripts": ["src/background.js", "src/utils.js"],
         "persistent": false
     },
+    "content_scripts": [
+        {
+          "matches": ["http://www.linkedin.com/jobs/*", "https://www.linkedin.com/jobs/*"],
+          "js": ["src/contentScript.js"]
+        }
+      ],
     "page_action": {
         "default_icon": {
             "16": "images/icon16.png", 

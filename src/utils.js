@@ -1,0 +1,1 @@
+const isLinkedInJobPage = (url) => url.match(/https?:\/\/www.linkedin.com\/jobs\/*/).length > 0
