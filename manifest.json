@@ -1,0 +1,21 @@
+{
+    "name": "Hello Extensions",
+    "description" : "Base Level Extension",
+    "permissions": ["declarativeContent", 
+                    "storage",
+                    "activeTab"],
+    "version": "1.0",
+    "background": {
+        "scripts": ["src/background.js"],
+        "persistent": false
+    },
+    "page_action": {
+        "default_icon": {
+            "16": "images/icon16.png", 
+            "32": "images/icon32.png"
+          },
+        "default_popup": "src/popup.html"
+    },
+    "options_page": "src/options.html",
+    "manifest_version": 2
+}
