@@ -5,7 +5,7 @@
                     "storage",
                     "activeTab",
                     "tabs"],
-    "version": "1.0",
+    "version": "0.01",
     "background": {
         "scripts": ["src/background.js", "src/utils.js"],
         "persistent": false
@@ -13,7 +13,7 @@
     "content_scripts": [
         {
           "matches": ["http://www.linkedin.com/jobs/*", "https://www.linkedin.com/jobs/*"],
-          "js": ["src/contentScript.js"]
+          "js": ["src/utils.js", "src/contentScript.js"]
         }
       ],
     "page_action": {

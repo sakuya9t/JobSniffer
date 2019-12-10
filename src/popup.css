@@ -1,3 +1,12 @@
+.container{
+    width: 200px;
+    height: 200px;
+}
+
+h2{
+    text-align: center;
+}
+
 button {
     height: 30px;
     width: 30px;
