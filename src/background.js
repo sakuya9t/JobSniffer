@@ -20,8 +20,10 @@ chrome.runtime.onInstalled.addListener(function() {
   chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if(changeInfo.url){
       const {url} = changeInfo;
-      console.log(isLinkedInJobPage(url))
-      console.log(url);
+      if(isLinkedInJobPage(url)) console.log(url);
+      if(isLinkedInJobDetailPage(url)){
+        console.log("Detail page.");
+      }
     }
   });
 });

@@ -1,5 +1,5 @@
 {
-    "name": "Job Tracker",
+    "name": "Job Sniffer",
     "description" : "Mark the job you have not applied",
     "permissions": ["declarativeContent", 
                     "storage",
@@ -7,7 +7,7 @@
                     "tabs"],
     "version": "0.01",
     "background": {
-        "scripts": ["src/background.js", "src/utils.js"],
+        "page": "src/background.html",
         "persistent": false
     },
     "content_scripts": [
@@ -16,6 +16,7 @@
           "js": ["src/utils.js", "src/contentScript.js"]
         }
       ],
+    "content_security_policy": "script-src 'self' https://*.googleapis.com; object-src 'self'",
     "page_action": {
         "default_icon": "images/icon.png",
         "default_popup": "src/popup.html"

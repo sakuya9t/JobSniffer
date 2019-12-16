@@ -6,7 +6,12 @@ const LinkedInJobCardPathClass = {
 };
 
 const isLinkedInJobPage = (url) => {
-    const match = url.match(/https?:\/\/www.linkedin.com\/jobs\/*/);
+    const match = url.match(/^https?:\/\/www.linkedin.com\/jobs\/*/);
+    return !!match && match.length > 0;
+}
+
+const isLinkedInJobDetailPage = (url) => {
+    const match = url.match(/^https?:\/\/www.linkedin.com\/jobs\/view\/*/);
     return !!match && match.length > 0;
 }
 
