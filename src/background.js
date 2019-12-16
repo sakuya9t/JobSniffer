@@ -23,6 +23,9 @@ chrome.runtime.onInstalled.addListener(function() {
       if(isLinkedInJobPage(url)) console.log(url);
       if(isLinkedInJobDetailPage(url)){
         console.log("Detail page.");
+        chrome.tabs.executeScript(tabId, {
+          code: "onPageChanges();"
+        }, () => console.log("Execute complete"));
       }
     }
   });
