@@ -20,7 +20,8 @@ chrome.runtime.onInstalled.addListener(function() {
   chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if(changeInfo.url){
       const {url} = changeInfo;
-      if(isLinkedInJobPage(url)) console.log(url);
+      const srcTabId = tab.openerTabId;
+      console.log(srcTabId);
       if(isLinkedInJobDetailPage(url)){
         console.log("Detail page.");
         chrome.tabs.executeScript(tabId, {

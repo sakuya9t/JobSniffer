@@ -39,9 +39,14 @@ const addToJobList = (platform, status, url) => {
     chrome.storage.sync.get('jobs', (data) => {
         let jobInfo = data.jobs;
         if(jobInfo === undefined || jobInfo === null) jobInfo = {};
-        if(!jobInfo[platform]) jobInfo[platform] = [];
+        if(!jobInfo[platform]) jobInfo[platform] = {};
         const jobId = getLinkedInJobId(url);
-        jobInfo[platform].push(jobId);
-        chrome.storage.sync.set({jobs: jobInfo}, () => console.log("Added to job list."))
+        updateJobStatus(jobInfo, platform, jobId, jobstatus.Clicked);
     });
+}
+
+const updateJobStatus = (jobInfo, platform, jobId, status) => {
+    const jobRecord = {status: status, lastUpdated: Date.now()};
+    jobInfo[platform][jobId] = jobRecord;
+    chrome.storage.sync.set({jobs: jobInfo}, () => console.log("Job list updated."))
 }
