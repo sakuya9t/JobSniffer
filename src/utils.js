@@ -18,6 +18,11 @@ const isLinkedInJobDetailPage = (url) => {
     return !!match && match.length > 0;
 }
 
+const getLinkedInJobId = (url) => {
+    const urlSuffix = url.split("?")[0].replace(/https?:\/\/www.linkedin.com\/jobs\/view\//, "");
+    return urlSuffix.replace('/', '');
+}
+
 const getJobCardElements = (url) => {
     console.log(url);
     const urlNoParam = url.split("?")[0]; // remove parameters from get method
@@ -35,7 +40,8 @@ const addToJobList = (platform, status, url) => {
         let jobInfo = data.jobs;
         if(jobInfo === undefined || jobInfo === null) jobInfo = {};
         if(!jobInfo[platform]) jobInfo[platform] = [];
-        jobInfo[platform].push(url);
+        const jobId = getLinkedInJobId(url);
+        jobInfo[platform].push(jobId);
         chrome.storage.sync.set({jobs: jobInfo}, () => console.log("Added to job list."))
     });
 }
