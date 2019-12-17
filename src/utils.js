@@ -32,10 +32,10 @@ const findElementByInnerText = (label, text) => Array.from(document.querySelecto
 
 const addToJobList = (platform, status, url) => {
     chrome.storage.sync.get('jobs', (data) => {
-        let updated = {...data};
-        console.log(updated);
-        if(!updated[platform]) updated[platform] = [];
-        updated[platform].push(url);
-        chrome.storage.sync.set({jobs: updated}, () => console.log("Added to job list."))
+        let jobInfo = data.jobs;
+        if(jobInfo === undefined || jobInfo === null) jobInfo = {};
+        if(!jobInfo[platform]) jobInfo[platform] = [];
+        jobInfo[platform].push(url);
+        chrome.storage.sync.set({jobs: jobInfo}, () => console.log("Added to job list."))
     });
 }

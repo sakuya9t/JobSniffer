@@ -3,17 +3,11 @@ const initTriggeredFunc = () => {
     const currLocation = window.location.toString();
     const elements = getJobCardElements(currLocation);
     console.log(elements);
-    
-    window.addEventListener("load", () => {
-        onPageChanges();
-    });
+    onPageChanges();
 }
 
-initTriggeredFunc();
-
 const onPageChanges = () => {
-    // Fire the buttonBinding event each time when we switch to a job detail page.
-    setTimeout(bindEventToJobApplyButton, 200);
+    bindEventToJobApplyButton();
 }
 
 const bindEventToJobApplyButton = () => {
@@ -30,3 +24,5 @@ const bindEventToJobApplyButton = () => {
         }
     }
 }
+
+initTriggeredFunc();
