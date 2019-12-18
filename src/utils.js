@@ -8,10 +8,14 @@ const LinkedInJobCardPathClass = {
     '/jobs/search/': 'job-card-search'
 };
 
+const trimURL = (url) => url.split("?")[0];
+
 const isLinkedInJobPage = (url) => {
     const match = url.match(/^https?:\/\/www.linkedin.com\/jobs\/*/);
     return !!match && match.length > 0;
 }
+
+const isJobDetailPage = (url) => isLinkedInJobDetailPage(url);
 
 const isLinkedInJobDetailPage = (url) => {
     const match = url.match(/^https?:\/\/www.linkedin.com\/jobs\/view\/*/);
@@ -19,15 +23,14 @@ const isLinkedInJobDetailPage = (url) => {
 }
 
 const getLinkedInJobId = (url) => {
-    const urlSuffix = url.split("?")[0].replace(/https?:\/\/www.linkedin.com\/jobs\/view\//, "");
+    const urlSuffix = trimURL(url).replace(/https?:\/\/www.linkedin.com\/jobs\/view\//, "");
     return urlSuffix.replace('/', '');
 }
 
 const getJobCardElements = (url) => {
     console.log(url);
-    const urlNoParam = url.split("?")[0]; // remove parameters from get method
-    if(isLinkedInJobPage(urlNoParam)){
-        const suffix = urlNoParam.replace(/https?:\/\/www.linkedin.com/, "");
+    if(isLinkedInJobPage(url)){
+        const suffix = url.replace(/https?:\/\/www.linkedin.com/, "");
         return document.getElementsByClassName(LinkedInJobCardPathClass[suffix]);
     }
     return [];
